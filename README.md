@@ -44,7 +44,13 @@ docker exec -it local-memcached CMD [ Argument1,Argument2,.... ]
 docker build --rm -t redis-image .
 
 # run a redis-image become a docker container
-docker run -d --name local-redis -v /var/www/docker/redis/data:/data -v /var/www/docker/redis/redis.conf:/etc/redis/redis.conf -d redis-image:v1 redis-server /etc/redis/redis.conf
+docker run -d --name local-redis -v /var/www/docker/redis/data:/data -v /var/www/docker/redis/redis.conf:/etc/redis/redis.conf -d redis-image redis-server /etc/redis/redis.conf
 
-# use a memcached-container
-docekr exec -it local-redis CMD [ Argument1,Argument2,.... ]
+# use a redis-container
+docker exec -it local-redis CMD [ Argument1,Argument2,.... ]
+
+
+### 实用技巧
+
+#CHECK A CONTAINER IP ADDRESS
+docker inspect --format '{{ .NetworkSettings.IPAddress }}' < container-id >
