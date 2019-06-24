@@ -16,10 +16,10 @@ nbproject
 Thumbs.db
 
 # redis-persistence-data ( remain the dir )
-/redis/data
 !/redis/data/
+/redis/data/*
 
 # nginx-logs ( remain the dir )
-/nginx/logs
 !/nginx/logs/
+/nginx/logs/*
 

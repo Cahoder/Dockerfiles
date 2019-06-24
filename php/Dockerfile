@@ -59,6 +59,22 @@ RUN apt-get install -y libmemcached-dev zlib1g-dev \
     && pecl install memcached-3.0.4 && echo "extension=memcached.so" > /usr/local/etc/php/conf.d/memcached.ini \
     && docker-php-ext-enable memcached
 
+# memcache extension install
+RUN set -eux \
+    && cd /tmp \
+    && curl -sSL -o php7.tar.gz https://github.com/websupport-sk/pecl-memcache/archive/php7.tar.gz \
+    && tar -zxvf php7.tar.gz \
+    && cd pecl-memcache-php7 \
+    && /usr/local/bin/phpize \
+    && ./configure --with-php-config=/usr/local/bin/php-config \
+    && make \
+    && make install \
+    && echo "extension=memcache.so" > /usr/local/etc/php/conf.d/memcache.ini \
+    && rm -rf /tmp/pecl-memcache-php7 php7.tar.gz
+
+# composer install
+
+
 # clean all the apt-get files
 RUN rm -r /var/lib/apt/lists/*
 
