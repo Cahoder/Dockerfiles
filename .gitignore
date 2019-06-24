@@ -15,8 +15,11 @@ nbproject
 # windows thumbnail cache
 Thumbs.db
 
-# redis-persistence-data
-redis/data/
+# redis-persistence-data ( remain the dir )
+/redis/data
+!/redis/data/
 
-# nginx-logs
-nginx/logs/
+# nginx-logs ( remain the dir )
+/nginx/logs
+!/nginx/logs/
+
