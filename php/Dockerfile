@@ -62,18 +62,19 @@ RUN apt-get install -y libmemcached-dev zlib1g-dev \
 # memcache extension install
 RUN set -eux \
     && cd /tmp \
-    && curl -sSL -o php7.tar.gz https://github.com/websupport-sk/pecl-memcache/archive/php7.tar.gz \
-    && tar -zxvf php7.tar.gz \
+    && curl -sSL -o php7-memcache.tar.gz https://github.com/websupport-sk/pecl-memcache/archive/php7.tar.gz \
+    && tar -zxvf php7-memcache.tar.gz \
     && cd pecl-memcache-php7 \
     && /usr/local/bin/phpize \
     && ./configure --with-php-config=/usr/local/bin/php-config \
     && make \
     && make install \
     && echo "extension=memcache.so" > /usr/local/etc/php/conf.d/memcache.ini \
-    && rm -rf /tmp/pecl-memcache-php7 php7.tar.gz
+    && rm -rf /tmp/pecl-memcache-php7 php7-memcache.tar.gz
 
 # composer install
-
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/local/bin/composer
 
 # clean all the apt-get files
 RUN rm -r /var/lib/apt/lists/*
