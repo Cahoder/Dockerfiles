@@ -24,7 +24,7 @@ docker exec -it local-php CMD [ Argument1,Argument2,...... ]
 docker build --rm -t nginx-image .
 
 # run a nginx-image become a docker container
-docker run -d -p 80:80 --name local-nginx -v /var/www:/usr/share/nginx/html -v /var/www/docker/nginx/logs:/var/log/nginx -v /var/www/docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro -v /var/www/docker/nginx/conf.d:/etc/nginx/conf.d:ro --link local-php:php --link local-redis:redis --link local-memcached:memcached nginx-image
+docker run -d -p 80:80 --name local-nginx -v /var/www:/usr/share/nginx/html -v /var/www/docker/nginx/logs:/var/log/nginx -v /var/www/docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro -v /var/www/docker/nginx/conf.d:/etc/nginx/conf.d:ro --link local-php:php nginx-image
 
 # use a nginx-container
 docker exec -it local-nginx CMD [ Argument1,Argument2,...... ]
@@ -34,7 +34,7 @@ docker exec -it local-nginx CMD [ Argument1,Argument2,...... ]
 docker build --rm -t memcached-image .
 
 # run a memcached-image become a docker container
-docker run -d --name local-memcached memcached-image
+docker run --network container:local-php -d --name local-memcached memcached-image
 
 # use a memcached-container
 docker exec -it local-memcached CMD [ Argument1,Argument2,.... ]
@@ -44,7 +44,7 @@ docker exec -it local-memcached CMD [ Argument1,Argument2,.... ]
 docker build --rm -t redis-image .
 
 # run a redis-image become a docker container
-docker run -d --name local-redis -v /var/www/docker/redis/data:/data -v /var/www/docker/redis/redis.conf:/etc/redis/redis.conf -d redis-image redis-server /etc/redis/redis.conf
+docker run -d --name local-redis --network container:local-php -v /var/www/docker/redis/data:/data -v /var/www/docker/redis/redis.conf:/etc/redis/redis.conf -d redis-image redis-server /etc/redis/redis.conf
 
 # use a redis-container
 docker exec -it local-redis CMD [ Argument1,Argument2,.... ]

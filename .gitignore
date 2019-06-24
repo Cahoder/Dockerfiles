@@ -1,0 +1,22 @@
+# Created by .ignore support plugin (hsz.mobi)
+
+
+# phpstorm project files
+.idea/
+
+# netbeans project files
+nbproject
+
+# zend studio for eclipse project files
+.buildpath
+.project
+.settings
+
+# windows thumbnail cache
+Thumbs.db
+
+# redis-persistence-data
+redis/data/
+
+# nginx-logs
+nginx/logs/
