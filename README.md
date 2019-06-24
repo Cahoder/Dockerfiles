@@ -1,4 +1,4 @@
-1.## centos7-container --install
+### 1.## centos7-container --install
 ## build a docker image by Dockerfile
 docker build --rm -t centos7-image .
 
@@ -9,7 +9,7 @@ docker run -itd --name local-centos7 --privileged -v /sys/fs/cgroup:/sys/fs/cgro
 docker exec -it local-centos7 /bin/bash
 
 
-2.## php7.2-container --install
+### 2.## php7.2-container --install
 ## build a docker image by Dockerfile
 docker build --rm -t php-image .
 
@@ -19,7 +19,7 @@ docker run --name local-php -d -v /var/www:/var/www/html php-image
 # use a php-container
 docker exec -it local-php CMD [ Argument1,Argument2,...... ]
 
-3.## nginx-container --install
+### 3.## nginx-container --install
 ## build a docker image by Dockerfile
 docker build --rm -t nginx-image .
 
@@ -29,7 +29,7 @@ docker run -d -p 80:80 --name local-nginx -v /var/www:/usr/share/nginx/html -v /
 # use a nginx-container
 docker exec -it local-nginx CMD [ Argument1,Argument2,...... ]
 
-4.## memcached-container --install
+### 4.## memcached-container --install
 ## build a docker image by Dockerfile
 docker build --rm -t memcached-image .
 
@@ -39,7 +39,7 @@ docker run --network container:local-php -d --name local-memcached memcached-ima
 # use a memcached-container
 docker exec -it local-memcached CMD [ Argument1,Argument2,.... ]
 
-5.## redis-container --install
+### 5.## redis-container --install
 ## build a docker image by Dockerfile
 docker build --rm -t redis-image .
 
