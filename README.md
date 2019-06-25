@@ -56,8 +56,10 @@ docker exec -it local-redis CMD [ Argument1,Argument2,.... ]
 docker inspect --format '{{ .NetworkSettings.IPAddress }}' < container-id >
 
 #COMPOSER USAGE
-docker exec -it local-php composer [ Argument1,Argument2,.... ]
+docker exec --privileged -it -w /var/www/html/[ *** ] local-php composer [ Argument1,.... ]
 
-#Obtain ALL THE COMTAINERS ID
+#OBTAIN ALL THE COMTAINERS ID
 docker ps -aq
 
+#SEE A AVAILABLE OPTIONS
+docker run -it --rm < *-image > --verbose --help
