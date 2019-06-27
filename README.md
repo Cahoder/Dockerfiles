@@ -49,17 +49,32 @@ docker run -d --name local-redis --network container:local-php -v /var/www/docke
 # use a redis-container
 docker exec -it local-redis CMD [ Argument1,Argument2,.... ]
 
+### 6.## mysql-container --install
+## build a mysql image by Dockerfile
+docker build --rm -t mysql-image .
+
+# run a mysql-image become a docker container
+docker run -d --name local-mysql -v /var/www/docker/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw mysql-image
+
+# connect to mysql from the mysql command line client
+docker run -it --network some-network --rm mysql-image -hlocal-mysql -uexample-user -p
+
+#creating db dumps
+docker exec some-mysql sh -c 'exec mysqldump --all-databases -uroot -p"$MYSQL_ROOT_PASSWORD"' > /some/path/on/your/host/all-databases.sql
+
+#restoring data from dump files
+docker exec -i some-mysql sh -c 'exec mysql -uroot -p"$MYSQL_ROOT_PASSWORD"' < /some/path/on/your/host/all-databases.sql
 
 ### 实用技巧
 
 #CHECK A CONTAINER IP ADDRESS
 docker inspect --format '{{ .NetworkSettings.IPAddress }}' < container-id >
 
-#COMPOSER USAGE
+#HOW TO USE A COMPOSER
 docker exec --privileged -it -w /var/www/html/[ *** ] local-php composer [ Argument1,.... ]
 
 #OBTAIN ALL THE COMTAINERS ID
 docker ps -aq
 
 #SEE A AVAILABLE OPTIONS
-docker run -it --rm < *-image > --verbose --help
+docker run -it --rm < your-image > --verbose --help
