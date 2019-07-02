@@ -1,4 +1,4 @@
-s dockerfile uses the mysql:5.6 image
+# This dockerfile uses the mysql:5.6 image
 # VERSION 1 - EDITION 1
 # Author: docker_user
 # Command format: Instruction [arguments / command ] ..
@@ -9,7 +9,10 @@ MAINTAINER fandow@docker.com
 
 # add an group and user by root
 USER root
-RUN groupadd -r mysql && useradd -r -g mysql mysql
+RUN egrep "^mysql" /etc/passwd; \
+    if [ $? -eq 1 ]; \
+    then groupadd -r mysql && useradd -r -g mysql mysql; \
+    fi
 
 # set timezone
 ENV TZ=Asia/Shanghai
