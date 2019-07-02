@@ -57,13 +57,13 @@ docker build --rm -t mysql-image .
 docker run -d --name local-mysql -v /var/www/docker/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw mysql-image
 
 # connect to mysql from the mysql command line client
-docker run -it --network some-network --rm mysql-image -hlocal-mysql -uexample-user -p
+docker run -it --rm mysql-image mysql -h $(docker inspect --format '{{ .NetworkSettings.IPAddress }}' local-mysql) -uroot -p123456
 
 #creating db dumps
-docker exec some-mysql sh -c 'exec mysqldump --all-databases -uroot -p"$MYSQL_ROOT_PASSWORD"' > /some/path/on/your/host/all-databases.sql
+docker exec local-mysql sh -c 'exec mysqldump --all-databases -uroot -p"$MYSQL_ROOT_PASSWORD"' > /some/path/on/your/host/all-databases.sql
 
 #restoring data from dump files
-docker exec -i some-mysql sh -c 'exec mysql -uroot -p"$MYSQL_ROOT_PASSWORD"' < /some/path/on/your/host/all-databases.sql
+docker exec -i local-mysql sh -c 'exec mysql -uroot -p"$MYSQL_ROOT_PASSWORD"' < /some/path/on/your/host/all-databases.sql
 
 ### 实用技巧
 

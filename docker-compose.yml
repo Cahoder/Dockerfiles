@@ -60,3 +60,18 @@ services:
             - "80:80"
 
 
+    local-mysql:
+        build:
+            context: ./mysql
+            dockerfile: Dockerfile
+        container_name: local-mysql
+        image: mysql-image:v1
+        volumes:
+            - ./mysql/data:/var/lib/mysql
+        network_mode: "bridge"
+        ports:
+            - "3306"
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: 123456
