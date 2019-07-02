@@ -23,3 +23,6 @@ Thumbs.db
 !/nginx/logs/
 /nginx/logs/*
 
+# mysql-persistence-data
+!/mysql/data/
+/mysql/data/*
