@@ -1,0 +1,3 @@
+2019/07/01 18:48:21 [emerg] 1#1: host not found in upstream "php" in /etc/nginx/conf.d/api.weiqc.com.conf:34
+2019/07/01 20:56:20 [emerg] 1#1: host not found in upstream "php" in /etc/nginx/conf.d/api.weiqc.com.conf:34
+2019/07/01 20:59:14 [emerg] 1#1: host not found in upstream "php" in /etc/nginx/conf.d/api.weiqc.com.conf:34

@@ -73,8 +73,8 @@ RUN set -eux \
     && rm -rf /tmp/pecl-memcache-php7 php7-memcache.tar.gz
 
 # composer install
-curl -sS https://getcomposer.org/installer | php
-mv composer.phar /usr/local/bin/composer
+RUN curl -sS https://getcomposer.org/installer | php \
+    && mv composer.phar /usr/local/bin/composer
 
 # clean all the apt-get files
 RUN rm -r /var/lib/apt/lists/*
