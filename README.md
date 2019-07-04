@@ -78,3 +78,9 @@ docker ps -aq
 
 #SEE A AVAILABLE OPTIONS
 docker run -it --rm < your-image > --verbose --help
+
+#RESTART NETWORKING 
+/etc/init.d/networking restart
+
+#UPDATE|COMMIT A CONTAINER TO A IMAGE
+docker commit -a "author" -m "describe" local-container container-image:tag
