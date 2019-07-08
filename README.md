@@ -84,3 +84,6 @@ docker run -it --rm < your-image > --verbose --help
 
 #UPDATE|COMMIT A CONTAINER TO A IMAGE
 docker commit -a "author" -m "describe" local-container container-image:tag
+
+#COPY A RUNNING CONTAINER INNER FILE TO LOCAL
+docker cp local-running-container:/inner/path/ /to/local/path
