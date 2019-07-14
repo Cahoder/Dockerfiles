@@ -24,6 +24,26 @@ docker exec local-mysql sh -c 'exec mysqldump --all-databases -uroot -p"$MYSQL_R
 #restoring data from dump files
 docker exec -i local-mysql sh -c 'exec mysql -uroot -p"$MYSQL_ROOT_PASSWORD"' < /some/path/on/your/host/all-databases.sql
 
+### 3.## memcached-container --install
+## build a docker image by Dockerfile
+docker build --rm -t memcached-image .
+
+# run a memcached-image become a docker container
+docker run --network container:local-php -d --name local-memcached memcached-image
+
+# use a memcached-container
+docker exec -it local-memcached CMD [ Argument1,Argument2,.... ]
+
+### 4.## redis-container --install
+## build a docker image by Dockerfile
+docker build --rm -t redis-image .
+
+# run a redis-image become a docker container
+docker run -d --name local-redis --network container:local-php -v /var/www/docker/redis/data:/data -v /var/www/docker/redis/redis.conf:/etc/redis/redis.conf -d redis-image redis-server /etc/redis/redis.conf
+
+# use a redis-container
+docker exec -it local-redis CMD [ Argument1,Argument2,.... ]
+
 ### 实用技巧
 
 #CHECK A CONTAINER IP ADDRESS
