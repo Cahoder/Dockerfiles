@@ -12,16 +12,15 @@ nbproject
 .project
 .settings
 
+# tar from java jdk and tomcat
+/javaweb/*.tar.gz
+
 # windows thumbnail cache
 Thumbs.db
 
 # redis-persistence-data ( remain the dir )
 !/redis/data/
 /redis/data/*
-
-# nginx-logs ( remain the dir )
-!/nginx/logs/
-/nginx/logs/*
 
 # mysql-persistence-data
 !/mysql/data/
