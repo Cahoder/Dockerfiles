@@ -1,3 +1,5 @@
+### Linux + nginx + mysql + php docker file
+
 ### 1.## centos7-container --install
 ## build a docker image by Dockerfile
 docker build --rm -t centos7-image .
